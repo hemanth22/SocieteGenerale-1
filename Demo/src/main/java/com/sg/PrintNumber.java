@@ -39,23 +39,27 @@ public class PrintNumber {
 				checkDigits(i, sb);
 				System.out.println(sb.toString());
 			} else {
-				System.out.println(i);
+				checkDigits(i, sb);
+				if(sb.length() == 0){
+					System.out.println(i);
+				}else{
+					System.out.println(sb.toString());
+				}
 			}
 			sb.delete(0, sb.length());
 		}
 	}
 
-	private void checkDigits(int i, StringBuilder sb) {
-		if (i > 0 && sb == null) {
+	private void checkDigits(Integer i, StringBuilder sb){
+		if (i != 0 && sb == null) {
 			sb = new StringBuilder();
 		}
 
-		int d = 0;
-		while (i > 0) {
-			d = i % 10;
-			i = i / 10;
-			if (map.containsKey(d)) {
-				sb.append(map.get(d));
+		String str = i.toString();
+		for(int j = 0; j< str.length(); j++){
+			int key = Integer.parseInt(Character.toString(str.charAt(j)));
+			if (map.containsKey(key)) {
+				sb.append(map.get(key));
 			}
 		}
 	}
